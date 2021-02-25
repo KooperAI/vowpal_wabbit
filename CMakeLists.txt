@@ -44,7 +44,7 @@ set(VW_PROJECT_DESCRIPTION "Vowpal Wabbit Machine Learning System")
 set(VW_PROJECT_URL "https://vowpalwabbit.org")
 
 option(USE_LATEST_STD "Override using C++11 with the latest standard the compiler offers. Default is C++11. " OFF)
-include(DetectCXXStandard)
+# include(DetectCXXStandard)
 
 # Grab git commitish into variable
 IF(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
@@ -248,8 +248,8 @@ else()
 endif()
 
 add_subdirectory(explore)
-# add_subdirectory(cluster)
-# add_subdirectory(library)
+add_subdirectory(cluster)
+add_subdirectory(library)
 add_subdirectory(vowpalwabbit)
 
 if (BUILD_FLATBUFFERS)

@@ -14,6 +14,8 @@
 
 #include <fstream>
 
+int daemon(int /*a*/, int /*b*/) { exit(0); }
+
 #ifdef _WIN32
 #  define NOMINMAX
 #  include <winsock2.h>
@@ -23,7 +25,6 @@ typedef int socklen_t;
 // windows doesn't define SOL_TCP and use an enum for the later, so can't check for its presence with a macro.
 #  define SOL_TCP IPPROTO_TCP
 
-int daemon(int /*a*/, int /*b*/) { exit(0); }
 
 // Starting with v142 the fix in the else block no longer works due to mismatching linkage. Going forward we should just
 // use the actual isocpp version.

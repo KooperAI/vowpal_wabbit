@@ -11,9 +11,10 @@ This creates a binary tree topology over a set of n nodes that connect.
 #include "vw_exception.h"
 
 #ifdef _WIN32
-int daemon(int a, int b) { return 0; }
 int getpid() { return (int)::GetCurrentProcessId(); }
 #endif
+
+int daemon(int a, int b) { return 0; }
 
 #include <iostream>
 #include <fstream>
