@@ -18,6 +18,7 @@
  * - [Install other languages](https://vowpalwabbit.org/start.html)
  * - [Tutorials](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Tutorial)
  */
+#include "emscripten.h"
 
 #ifdef _WIN32
 #  ifdef LEAKCHECK
@@ -47,6 +48,7 @@ vw* initialize(std::unique_ptr<config::options_i, options_deleter_type> options,
     bool skipModelLoad = false, trace_message_t trace_listener = nullptr, void* trace_context = nullptr);
 vw* initialize(config::options_i& options, io_buf* model = nullptr, bool skipModelLoad = false,
     trace_message_t trace_listener = nullptr, void* trace_context = nullptr);
+extern "C" vw* initialize(char *c);
 vw* initialize(std::string s, io_buf* model = nullptr, bool skipModelLoad = false,
     trace_message_t trace_listener = nullptr, void* trace_context = nullptr);
 vw* initialize(int argc, char* argv[], io_buf* model = nullptr, bool skipModelLoad = false,

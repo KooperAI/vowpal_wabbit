@@ -334,6 +334,18 @@ if(BUILD_FLATBUFFERS)
 endif()
 
 add_library(vw STATIC ${vw_all_sources} ${vw_all_headers})
+add_executable(vwbinding ${vw_all_sources} ${vw_all_headers})
+target_link_options(vwbinding PUBLIC --no-entry)
+
+target_link_libraries(vwbinding
+  PUBLIC
+    VowpalWabbit::explore VowpalWabbit::allreduce Boost::boost
+  PRIVATE
+    Boost::program_options ${CMAKE_DL_LIBS} ${LINK_THREADS} vw_io
+    # Workaround an issue where RapidJSON needed to be exported tom install the target. This is
+    # actually a private dependency and so do not "link" when processing targets for installation.
+    # https://gitlab.kitware.com/cmake/cmake/issues/15415
+    $<BUILD_INTERFACE:RapidJSON>)
 
 target_link_libraries(vw
   PUBLIC
@@ -358,6 +370,11 @@ add_library(VowpalWabbit::vw ALIAS vw)
 if(GCOV)
   target_link_libraries(vw PUBLIC gcov --coverage)
 endif()
+
+target_include_directories(vwbinding PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 target_include_directories(vw PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

@@ -1774,6 +1774,7 @@ vw* initialize(std::unique_ptr<options_i, options_deleter_type> options, io_buf*
   }
 }
 
+
 vw* initialize(std::string s, io_buf* model, bool skipModelLoad, trace_message_t trace_listener, void* trace_context)
 {
   int argc = 0;
@@ -1813,6 +1814,13 @@ vw* initialize_escaped(
 
   free_args(argc, argv);
   return ret;
+}
+
+EMSCRIPTEN_KEEPALIVE
+extern "C" vw* initialize(char *c) {
+  std::string s(c);
+  std::cout << s << std::endl;
+  return initialize(s);
 }
 
 vw* initialize(

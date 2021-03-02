@@ -151,11 +151,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(explore_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/explore/")
 
-if(WIN32)
-  set(STATIC_LIB_SUFFIXES ".lib" ".a")
-else()
-  set(STATIC_LIB_SUFFIXES ".a")
-endif()
+#if(WIN32)
+#  set(STATIC_LIB_SUFFIXES ".lib" ".a")
+#else()
+#  set(STATIC_LIB_SUFFIXES ".a")
+#endif()
 
 if(STATIC_LINK_VW_JAVA)
   set(Boost_USE_STATIC_LIBS ON)
