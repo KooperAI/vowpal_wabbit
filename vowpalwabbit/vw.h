@@ -2,7 +2,7 @@
 // individual contributors. All rights reserved. Released under a BSD (revised)
 // license as described in the file LICENSE.
 #pragma once
-
+#include <emscripten.h>
 /*! \mainpage
  *
  * For the primary interface see:
@@ -18,15 +18,12 @@
  * - [Install other languages](https://vowpalwabbit.org/start.html)
  * - [Tutorials](https://github.com/VowpalWabbit/vowpal_wabbit/wiki/Tutorial)
  */
-#include "emscripten.h"
-
 #ifdef _WIN32
 #  ifdef LEAKCHECK
 // Visual Leak Detector for memory leak detection on Windows
 #    include <vld.h>
 #  endif
 #endif
-
 #include "global_data.h"
 #include "example.h"
 #include "hash.h"
@@ -74,7 +71,7 @@ const char* are_features_compatible(vw& vw1, vw& vw2);
 /*
   Call finish() after you are done with the vw instance.  This cleans up memory usage.
  */
-void finish(vw& all, bool delete_all = true);
+extern "C" void finish(vw& all, bool delete_all = true);
 void sync_stats(vw& all);
 
 void start_parser(vw& all);
@@ -93,7 +90,7 @@ struct primitive_feature_space  // just a helper definition.
 
 /* The simplest of two ways to create an example.  An example_line is the literal line in a VW-format datafile.
  */
-example* read_example(vw& all, char* example_line);
+extern "C" example* read_example(vw& all, char* example_line);
 example* read_example(vw& all, std::string example_line);
 
 // The more complex way to create an example.

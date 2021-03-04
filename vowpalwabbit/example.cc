@@ -393,6 +393,13 @@ std::string depth_indent_string(int32_t stack_depth)
   return strstream.str();
 }
 
+EMSCRIPTEN_KEEPALIVE
+extern "C" const char * scalar_pred_to_char(const example& ec)
+{
+  std::string res = scalar_pred_to_string(ec);
+  return res.data();
+}
+
 std::string scalar_pred_to_string(const example& ec)
 {
   std::stringstream strstream;

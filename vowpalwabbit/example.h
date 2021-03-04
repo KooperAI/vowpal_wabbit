@@ -166,6 +166,7 @@ private:
 }  // namespace VW
 std::string features_to_string(const example& ec);
 std::string simple_label_to_string(const example& ec);
+extern "C" const char * scalar_pred_to_char(const example &ec);
 std::string scalar_pred_to_string(const example& ec);
 std::string a_s_pred_to_string(const example& ec);
 std::string prob_dist_pred_to_string(const example& ec);

@@ -1882,7 +1882,8 @@ void sync_stats(vw& all)
   }
 }
 
-void finish(vw& all, bool delete_all)
+EMSCRIPTEN_KEEPALIVE
+extern "C" void finish(vw& all, bool delete_all)
 {
   // also update VowpalWabbit::PerformanceStatistics::get() (vowpalwabbit.cpp)
   if (!all.logger.quiet && !all.options->was_supplied("audit_regressor"))

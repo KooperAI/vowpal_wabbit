@@ -18,5 +18,5 @@ emcmake cmake .. \
   -DBUILD_TESTS=OFF \
   -DSTATIC_LINK_VW=ON \
   -DBUILD_SLIM_VW=ON \
-  -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\", \"allocate\", \"intArrayFromString\"]'" \
+  -DCMAKE_CXX_FLAGS="-s USE_PTHREADS=1 -s WASM=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"cwrap\", \"allocate\", \"intArrayFromString\"]' -s ASSERTIONS=1" \
   -DCMAKE_EXE_LINKER_FLAGS="-s LLD_REPORT_UNDEFINED -pthread"

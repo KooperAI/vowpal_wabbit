@@ -1,7 +1,7 @@
 // Copyright (c) by respective owners including Yahoo!, Microsoft, and
 // individual contributors. All rights reserved. Released under a BSD (revised)
 // license as described in the file LICENSE.
-
+#include <emscripten.h>
 #include <cstdio>
 #include <cfloat>
 #include <cerrno>
@@ -142,6 +142,7 @@ void set_mm(shared_data* sd, float label)
 
 void noop_mm(shared_data*, float) {}
 
+EMSCRIPTEN_KEEPALIVE
 void vw::learn(example& ec)
 {
   if (l->is_multiline) THROW("This reduction does not support single-line examples.");
@@ -162,7 +163,8 @@ void vw::learn(multi_ex& ec)
     VW::LEARNER::as_multiline(l)->learn(ec);
 }
 
-void vw::predict(example& ec)
+EMSCRIPTEN_KEEPALIVE
+extern "C" void vw::predict(example& ec)
 {
   if (l->is_multiline) THROW("This reduction does not support single-line examples.");
 
@@ -183,7 +185,8 @@ void vw::predict(multi_ex& ec)
   VW::LEARNER::as_multiline(l)->predict(ec);
 }
 
-void vw::finish_example(example& ec)
+EMSCRIPTEN_KEEPALIVE
+extern "C" void vw::finish_example(example& ec)
 {
   if (l->is_multiline) THROW("This reduction does not support single-line examples.");
 

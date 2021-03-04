@@ -721,7 +721,9 @@ example* new_unused_example(vw& all)
   ec->example_counter = (size_t)all.example_parser->begin_parsed_examples.load();
   return ec;
 }
-example* read_example(vw& all, char* example_line)
+
+EMSCRIPTEN_KEEPALIVE
+extern "C" example* read_example(vw& all, char* example_line)
 {
   example* ret = &get_unused_example(&all);
 

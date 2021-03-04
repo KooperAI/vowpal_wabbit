@@ -2,6 +2,7 @@
 // individual contributors. All rights reserved. Released under a BSD (revised)
 // license as described in the file LICENSE.
 #pragma once
+#include <emscripten.h>
 #include <iostream>
 #include <iomanip>
 #include <utility>
@@ -348,7 +349,7 @@ public:
   VW::LEARNER::single_learner* scorer;  // a scoring function
   VW::LEARNER::base_learner*
       cost_sensitive;  // a cost sensitive learning algorithm.  can be single or multi line learner
-
+  
   void learn(example&);
   void learn(multi_ex&);
   void predict(example&);
@@ -547,3 +548,4 @@ void compile_limits(std::vector<std::string> limits, std::array<uint32_t, NUM_NA
 VW_DEPRECATED("Use print_tag_by_ref instead")
 int print_tag(std::stringstream& ss, v_array<char> tag);
 int print_tag_by_ref(std::stringstream& ss, const v_array<char>& tag);
+
