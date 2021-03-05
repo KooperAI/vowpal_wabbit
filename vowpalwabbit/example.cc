@@ -417,11 +417,26 @@ std::string a_s_pred_to_string(const example& ec)
   return strstream.str();
 }
 
+EMSCRIPTEN_KEEPALIVE
+extern "C" const char * multiclass_pred_to_char(const example& ec)
+{
+  std::string res = multiclass_pred_to_string(ec);
+  return res.data();
+}
+
 std::string multiclass_pred_to_string(const example& ec)
 {
   std::stringstream strstream;
   strstream << "ec.pred.multiclass = " << ec.pred.multiclass;
   return strstream.str();
+}
+
+EMSCRIPTEN_KEEPALIVE
+extern "C" const char * prob_dist_pred_to_char(const example& ec)
+{
+  std::string res = prob_dist_pred_to_string(ec);
+  std::cout << res << std::endl;
+  return res.data();
 }
 
 std::string prob_dist_pred_to_string(const example& ec)
