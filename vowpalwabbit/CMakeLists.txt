@@ -335,7 +335,7 @@ endif()
 
 add_library(vw STATIC ${vw_all_sources} ${vw_all_headers})
 add_executable(vwbinding ${vw_all_sources} ${vw_all_headers})
-target_link_options(vwbinding PUBLIC --no-entry)
+set_target_properties(vwbinding PROPERTIES LINK_FLAGS "--no-entry")
 
 target_link_libraries(vwbinding
   PUBLIC
