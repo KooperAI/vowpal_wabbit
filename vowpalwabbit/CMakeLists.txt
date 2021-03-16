@@ -334,6 +334,8 @@ if(BUILD_FLATBUFFERS)
 endif()
 
 add_library(vw STATIC ${vw_all_sources} ${vw_all_headers})
+set_target_properties(vw PROPERTIES
+  SUFFIX ".js")
 add_executable(vwbinding ${vw_all_sources} ${vw_all_headers})
 set_target_properties(vwbinding PROPERTIES LINK_FLAGS "--no-entry")
 
