@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <stdio.h>
+
 #include "parse_regressor.h"
 #include "constant.h"
 #include "interactions.h"
@@ -19,6 +21,8 @@ struct gd;
 float finalize_prediction(shared_data* sd, vw_logger& logger, float ret);
 void print_features(vw& all, example& ec);
 void print_audit_features(vw&, example& ec);
+char* save_load_memory(gd& g, bool read, size_t &len, bool text);
+void save_load(gd& g, io_buf& model_file, bool read, bool text);
 void save_load_regressor(vw& all, io_buf& model_file, bool read, bool text);
 void save_load_online_state(vw& all, io_buf& model_file, bool read, bool text, double& total_weight,
     GD::gd* g = nullptr, uint32_t ftrl_size = 0);

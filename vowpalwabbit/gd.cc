@@ -2,8 +2,10 @@
 // individual contributors. All rights reserved. Released under a BSD (revised)
 // license as described in the file LICENSE.
 #include "crossplat_compat.h"
+#include "io/io_adapter.h"
 
 #include <cfloat>
+#include <cstdio>
 
 #if !defined(VW_NO_INLINE_SIMD)
 #  if !defined(__SSE2__) && (defined(_M_AMD64) || defined(_M_X64))
@@ -965,6 +967,18 @@ void save_load_online_state(
     save_load_online_state(all, model_file, read, text, g, msg, ftrl_size, all.weights.sparse_weights);
   else
     save_load_online_state(all, model_file, read, text, g, msg, ftrl_size, all.weights.dense_weights);
+}
+
+/**
+ * Save or load the file from/to memory
+ */
+char *save_load_memory(gd& g, bool read, size_t &len, bool text) {
+  auto backing_vector = std::make_shared<std::vector<char>>();
+  io_buf model_file;
+  model_file.add_file(VW::io::create_vector_writer(backing_vector));
+  save_load(g, model_file, read, text);
+  len = backing_vector->size();
+  return (char *)backing_vector->data(); 
 }
 
 void save_load(gd& g, io_buf& model_file, bool read, bool text)
