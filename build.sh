@@ -12,8 +12,8 @@ emcmake cmake .. \
   -DBOOST_ROOT=`pwd`/../../boost_1_71_0 \
   -DBoost_INCLUDE_DIR=`pwd`/../../boost_1_71_0 \
   -DBoost_LIBRARY_DIR="`pwd`/../../boost_1_71_0/bin.v2/libs/system/build/emscripten-2.0.14/release/link-static/threading-multi/visibility-hidden/;`pwd`/../../boost_1_71_0/bin.v2/libs/program_options/build/emscripten-2.0.14/release/link-static/threading-multi/visibility-hidden/" \
-  -DZLIB_LIBRARY=`pwd`/../../zlib/build/libz.a \
-  -DZLIB_INCLUDE_DIR="`pwd`/../../zlib/build;`pwd`/../../zlib" \
+  -DZLIB_LIBRARY=`pwd`/../../zlib-1.2.11/build/libz.a \
+  -DZLIB_INCLUDE_DIR="`pwd`/../../zlib-1.2.11/build;`pwd`/../../zlib-1.2.11" \
   -DBUILD_FLATBUFFERS=OFF \
   -DBUILD_TESTS=OFF \
   -DSTATIC_LINK_VW=ON \
